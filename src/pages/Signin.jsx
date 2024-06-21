@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { userDetails } from "../redux/authSlice";
 
 const SignIn = () => {
   const [loginData, setLoginData] = useState({
@@ -11,6 +13,7 @@ const SignIn = () => {
   });
   const [captchNumber, setCaptchaNumber] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -38,6 +41,7 @@ const SignIn = () => {
               window.alert("Captch is not verified");
               return;
             }
+            dispatch(userDetails(user.fullName));
             window.alert("Login successful");
           } else {
             window.alert("password or email incorrect");

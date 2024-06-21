@@ -1,5 +1,11 @@
+import NavBar from "../components/NavBar";
+
 const TaskManagement = () => {
-  return <div>TaskManagement</div>;
+  return (
+    <div>
+      <NavBar />
+    </div>
+  );
 };
 
 export default TaskManagement;

@@ -2,7 +2,17 @@
 
 import { Link } from "react-router-dom";
 import "./navBar.css";
+import { useDispatch, useSelector } from "react-redux";
+import { userDetails } from "../redux/authSlice";
 const NavBar = () => {
+  const user = useSelector((store) => store.auth.user);
+
+  const dispatch = useDispatch();
+
+  console.log(user);
+  const handleLogOut = () => {
+    dispatch(userDetails(null));
+  };
   return (
     <div>
       <>
@@ -28,16 +38,28 @@ const NavBar = () => {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <Link to="/signin" className="nav-link" href="#">
-                    Sign In
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="signup" className="nav-link" href="#">
-                    Sign Up
-                  </Link>
-                </li>
+                {user && <li className="nav-item nav-link">Welcome {user}</li>}
+
+                {!user ? (
+                  <>
+                    <li className="nav-item">
+                      <Link to="/signin" className="nav-link">
+                        Sign In
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/signup" className="nav-link">
+                        Sign Up
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <li className="nav-item" onClick={handleLogOut}>
+                    <Link to="/" className="nav-link">
+                      Log Out
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
