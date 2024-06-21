@@ -38,6 +38,22 @@
       "email": "rbzashu@gmail.com",
       "password": "123456",
       "confirmPassword": "123456"
+    },
+    {
+      "id": "90e6",
+      "fullName": "Ashish",
+      "userName": "ashurbz",
+      "email": "ehg@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456"
+    },
+    {
+      "id": "8167",
+      "fullName": "ashu",
+      "userName": "shu",
+      "email": "ajsjh@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456"
     }
   ]
 }

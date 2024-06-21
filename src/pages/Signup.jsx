@@ -9,6 +9,7 @@ import {
   validateUserName,
 } from "../utilities/validations";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -18,13 +19,13 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
-
   const [errors, setErrors] = useState({
     fullName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     console.log(e);
@@ -74,8 +75,9 @@ const SignUp = () => {
 
     axios
       .post(`http://localhost:9000/users`, formData)
-      .then((result) => console.log(result))
+      .then((result) => window.alert("Registration Successful, Please Login"))
       .catch((error) => console.log(error));
+    navigate("/signin");
 
     setFormData({
       fullName: "",
@@ -171,6 +173,11 @@ const SignUp = () => {
           Sign Up
         </Button>
       </Form>
+      <Link to="/signin">
+        <span style={{ position: "relative", left: "40%" }}>
+          Already Have Account, Please Sign In
+        </span>
+      </Link>
     </div>
   );
 };
