@@ -1,7 +1,7 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Link } from "react-router-dom";
-
+import "./navBar.css";
 const NavBar = () => {
   return (
     <div>
@@ -9,7 +9,7 @@ const NavBar = () => {
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container">
             <Link to="/" className="navbar-brand" href="#">
-              Your Brand
+              <span className="brand"> KanBan Board</span>
             </Link>
             <button
               className="navbar-toggler"
@@ -35,7 +35,7 @@ const NavBar = () => {
                 </li>
                 <li className="nav-item">
                   <Link to="signup" className="nav-link" href="#">
-                    Sign Out
+                    Sign Up
                   </Link>
                 </li>
               </ul>

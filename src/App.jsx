@@ -2,14 +2,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import Home from "./pages/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import "./app.css";
 // implmented lazy loading
 const SignUp = lazy(() => import("./pages/SignUp"));
 const SignIn = lazy(() => import("./pages/SignIn"));
 
 function App() {
   return (
-    <>
+    <div className="layout">
       {/* implemented routing */}
       <BrowserRouter>
         <Suspense>
@@ -20,7 +20,7 @@ function App() {
           </Routes>
         </Suspense>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 
