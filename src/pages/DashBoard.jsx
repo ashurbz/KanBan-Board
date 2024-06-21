@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import DashBoardCard from "../components/DashBoardCard";
 import NavBar from "../components/NavBar";
 import "./dashboard.css";
@@ -27,6 +28,11 @@ const DashBoard = () => {
           return <DashBoardCard data={data} key={data.heading} />;
         })}
       </div>
+      <Link style={{ textDecoration: "none" }} to="/task_management">
+        <p style={{ textAlign: "center", fontSize: "x-large" }}>
+          Go To Task Management Page
+        </p>
+      </Link>
     </>
   );
 };

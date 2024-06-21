@@ -8,6 +8,7 @@ const SignUp = lazy(() => import("./pages/SignUp"));
 const SignIn = lazy(() => import("./pages/SignIn"));
 
 const DashBoard = lazy(() => import("./pages/DashBoard"));
+const TaskManagement = lazy(() => import("./pages/TaskManagement"));
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/dashboard" element={<DashBoard />} />
+            <Route path="/task_management" element={<TaskManagement />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
