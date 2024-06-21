@@ -7,6 +7,8 @@ import "./app.css";
 const SignUp = lazy(() => import("./pages/SignUp"));
 const SignIn = lazy(() => import("./pages/SignIn"));
 
+const DashBoard = lazy(() => import("./pages/DashBoard"));
+
 function App() {
   return (
     <div className="layout">
@@ -17,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/dashboard" element={<DashBoard />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

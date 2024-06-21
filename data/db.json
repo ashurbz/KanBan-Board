@@ -54,6 +54,14 @@
       "email": "ajsjh@gmail.com",
       "password": "123456",
       "confirmPassword": "123456"
+    },
+    {
+      "id": "525b",
+      "fullName": "Ashish",
+      "userName": "rbzashu",
+      "email": "rbzashu@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456"
     }
   ]
 }
