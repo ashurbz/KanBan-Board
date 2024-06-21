@@ -8,6 +8,7 @@ import {
   validateName,
   validateUserName,
 } from "../utilities/validations";
+import axios from "axios";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -26,6 +27,7 @@ const SignUp = () => {
   });
 
   const handleInputChange = (e) => {
+    console.log(e);
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -33,7 +35,7 @@ const SignUp = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    // Validate inputs
+    //Validate inputs
     const emailValid = validateEmail(formData.email);
     const passwordValid = validatePassword(formData.password);
     const confirmPasswordValid = validateConfirmPassword(
@@ -70,7 +72,24 @@ const SignUp = () => {
       return;
     }
 
-    console.log("Form submitted with:", formData);
+    axios
+      .post(`http://localhost:9000/users`, formData)
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+
+    setFormData({
+      fullName: "",
+      userName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
+    setErrors({
+      fullName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
   };
 
   return (

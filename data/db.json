@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "id": "79f7",
+      "fullName": "as",
+      "userName": "as",
+      "email": "as@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "ac2f",
+      "fullName": "ashish",
+      "userName": "rbzashu",
+      "email": "rbvzas@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456"
+    },
+    {
+      "id": "3462",
+      "fullName": "aqw",
+      "userName": "addf",
+      "email": "sadd@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456"
+    },
+    {
+      "id": "6f3d",
+      "fullName": "awer",
+      "userName": "addewd",
+      "email": "sadd@gmai.com",
+      "password": "1234567",
+      "confirmPassword": "1234567"
+    },
+    {
+      "id": "1794",
+      "fullName": "aweu",
+      "userName": "asry",
+      "email": "rbzashu@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456"
+    }
+  ]
+}
