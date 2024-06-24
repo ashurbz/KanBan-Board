@@ -1,35 +1,29 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./navBar.css";
 import { useDispatch, useSelector } from "react-redux";
-import { userDetails } from "../redux/authSlice";
+import { isAuth, userDetails } from "../redux/authSlice";
 const NavBar = () => {
   const user = useSelector((store) => store.auth.user);
-  const isAuth = useSelector((store) => store.auth.isAuthenticated);
-
-  const navigate = useNavigate();
+  const auth = useSelector((store) => store.auth.isAuthenticated);
+  console.log(auth);
   const dispatch = useDispatch();
 
-  console.log(user);
   const handleLogOut = () => {
     dispatch(userDetails(null));
-    dispatch(userDetails(false));
+    dispatch(isAuth(false));
   };
 
-  const handleOnClick = () => {
-    if (isAuth) {
-      navigate("/dashboard");
-    } else {
-      navigate("/");
-    }
-  };
   return (
     <div>
       <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container">
-            <Link to="/" className="navbar-brand brand" onClick={handleOnClick}>
+            <Link
+              to={!auth ? "/" : "/dashboard"}
+              className="navbar-brand brand"
+            >
               KanBan Board
             </Link>
 
@@ -50,7 +44,11 @@ const NavBar = () => {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                {user && <li className="nav-item nav-link">Welcome {user}</li>}
+                {user ? (
+                  <li className="nav-item nav-link">Welcome {user}</li>
+                ) : (
+                  ""
+                )}
 
                 {!user ? (
                   <>

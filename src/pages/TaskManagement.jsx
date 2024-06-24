@@ -1,13 +1,13 @@
 import NavBar from "../components/NavBar";
 import TaskBoard from "../components/TaskBoard";
-import TaskList from "../components/TaskList";
+import TaskForm from "../components/TaskForm";
 
 const TaskManagement = () => {
   return (
     <div>
       <NavBar />
+      <TaskForm />
       <TaskBoard />
-      <TaskList />
     </div>
   );
 };

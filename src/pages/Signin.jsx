@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userDetails } from "../redux/authSlice";
+import { isAuth, userDetails } from "../redux/authSlice";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./signIn.css";
 import NavBar from "../components/NavBar";
@@ -50,6 +50,7 @@ const SignIn = () => {
               return;
             }
             dispatch(userDetails(user.fullName));
+            dispatch(isAuth(true));
             navigate("/dashboard");
 
             window.alert("Login successful");
