@@ -70,6 +70,14 @@
       "email": "rbzashu@gmail.com",
       "password": "123456",
       "confirmPassword": "123456"
+    },
+    {
+      "id": "d19a",
+      "fullName": "Shiva",
+      "userName": "Shiva",
+      "email": "fdfgdrt@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456"
     }
   ]
 }

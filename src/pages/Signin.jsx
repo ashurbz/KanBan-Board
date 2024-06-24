@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { userDetails } from "../redux/authSlice";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./signIn.css";
+import NavBar from "../components/NavBar";
 
 const SignIn = () => {
   const [loginData, setLoginData] = useState({
@@ -49,6 +50,8 @@ const SignIn = () => {
               return;
             }
             dispatch(userDetails(user.fullName));
+            navigate("/dashboard");
+
             window.alert("Login successful");
           } else {
             window.alert("password or email incorrect");
@@ -57,7 +60,6 @@ const SignIn = () => {
       });
     });
 
-    navigate("/dashboard");
     setLoginData({
       userNameOrEmail: "",
       password: "",
@@ -67,63 +69,80 @@ const SignIn = () => {
   };
 
   return (
-    <Container className="mt-5">
-      <Row className="justify-content-md-center">
-        <Col xs={12} md={6}>
-          <h2>Login</h2>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group>
-              <Form.Label>Username or Email address</Form.Label>
+    <>
+      <NavBar />
+      <Container className="mt-5">
+        <Row className="justify-content-md-center">
+          <Col xs={12} md={6}>
+            <h2>Login</h2>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group>
+                <Form.Label>Username or Email address</Form.Label>
 
-              <Form.Control
-                type="text"
-                placeholder="Enter username or email"
-                name="userNameOrEmail"
-                value={loginData.username}
-                onChange={handleInputChange}
-                required
-              />
-            </Form.Group>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter username or email"
+                  name="userNameOrEmail"
+                  value={loginData.username}
+                  onChange={handleInputChange}
+                  required
+                />
+              </Form.Group>
 
-            <Form.Group>
-              <Form.Label>Password</Form.Label>
+              <Form.Group>
+                <Form.Label>Password</Form.Label>
+                {togglePassword ? (
+                  <>
+                    <Form.Control
+                      type="input"
+                      placeholder="Password"
+                      name="password"
+                      value={loginData.password}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    <div className="eye-open" onClick={handleTogglePassword}>
+                      <FaEye />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <Form.Control
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      value={loginData.password}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    <div className="eye-open" onClick={handleTogglePassword}>
+                      <FaEyeSlash />
+                    </div>
+                  </>
+                )}
+              </Form.Group>
 
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={loginData.password}
-                onChange={handleInputChange}
-                required
-              />
-              <div className="eye-open">
-                <FaEye />
-              </div>
-              <div className="eye-close" onClick={handleTogglePassword}>
-                <FaEyeSlash />
-              </div>
-            </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Captcha</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Captcha"
+                  name="captcha"
+                  value={loginData.captcha}
+                  onChange={handleInputChange}
+                  required
+                />
+                <span> Enter same number above {captchNumber}</span>
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Captcha</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Captcha"
-                name="captcha"
-                value={loginData.captcha}
-                onChange={handleInputChange}
-                required
-              />
-              <span> Enter same number above {captchNumber}</span>
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-              Login
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+              <Button variant="primary" type="submit">
+                Login
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 

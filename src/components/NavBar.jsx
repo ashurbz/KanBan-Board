@@ -1,26 +1,38 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navBar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { userDetails } from "../redux/authSlice";
 const NavBar = () => {
   const user = useSelector((store) => store.auth.user);
+  const isAuth = useSelector((store) => store.auth.isAuthenticated);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   console.log(user);
   const handleLogOut = () => {
     dispatch(userDetails(null));
+    dispatch(userDetails(false));
+  };
+
+  const handleOnClick = () => {
+    if (isAuth) {
+      navigate("/dashboard");
+    } else {
+      navigate("/");
+    }
   };
   return (
     <div>
       <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container">
-            <Link to="/" className="navbar-brand" href="#">
-              <span className="brand"> KanBan Board</span>
+            <Link to="/" className="navbar-brand brand" onClick={handleOnClick}>
+              KanBan Board
             </Link>
+
             <button
               className="navbar-toggler"
               type="button"

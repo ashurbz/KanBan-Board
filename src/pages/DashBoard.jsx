@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import DashBoardCard from "../components/DashBoardCard";
 import NavBar from "../components/NavBar";
 import "./dashboard.css";
+import { useSelector } from "react-redux";
 
 const data = [
   {
@@ -17,7 +18,10 @@ const data = [
     count: 2,
   },
 ];
+
 const DashBoard = () => {
+  const isAuth = useSelector((store) => store.auth.isAuthenticated);
+  console.log(isAuth);
   return (
     <>
       <div>

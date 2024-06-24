@@ -10,6 +10,7 @@ import {
 } from "../utilities/validations";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +26,12 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
+  const [togglePassword, setTogglePassword] = useState(false);
+
   const navigate = useNavigate();
+  const handleTogglePassword = () => {
+    setTogglePassword(!togglePassword);
+  };
 
   const handleInputChange = (e) => {
     console.log(e);
@@ -141,18 +147,45 @@ const SignUp = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group>
           <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-            isInvalid={!!errors.password}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors.password}
-          </Form.Control.Feedback>
+          {togglePassword ? (
+            <>
+              <Form.Control
+                type="input"
+                placeholder="Password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                isInvalid={!!errors.password}
+                required
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback>
+              <div className="eye-open" onClick={handleTogglePassword}>
+                <FaEye />
+              </div>
+            </>
+          ) : (
+            <>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                isInvalid={!!errors.password}
+                required
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback>
+              <div className="eye-open" onClick={handleTogglePassword}>
+                <FaEyeSlash />
+              </div>
+            </>
+          )}
         </Form.Group>
 
         <Form.Group className="mb-3">

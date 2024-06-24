@@ -1,6 +1,8 @@
-.eye-open .eye-close {
+.eye-open,
+.eye-close {
   position: relative;
   bottom: 32px;
   left: 95%;
   cursor: pointer;
+  width: fit-content;
 }
