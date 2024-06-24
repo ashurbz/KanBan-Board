@@ -1,0 +1,6 @@
+.eye-open .eye-close {
+  position: relative;
+  bottom: 32px;
+  left: 95%;
+  cursor: pointer;
+}

@@ -4,6 +4,8 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userDetails } from "../redux/authSlice";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import "./signIn.css";
 
 const SignIn = () => {
   const [loginData, setLoginData] = useState({
@@ -12,12 +14,17 @@ const SignIn = () => {
     captcha: "",
   });
   const [captchNumber, setCaptchaNumber] = useState("");
+  const [togglePassword, setTogglePassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
+  };
+
+  const handleTogglePassword = () => {
+    setTogglePassword(!togglePassword);
   };
 
   useEffect(() => {
@@ -65,8 +72,9 @@ const SignIn = () => {
         <Col xs={12} md={6}>
           <h2>Login</h2>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3">
+            <Form.Group>
               <Form.Label>Username or Email address</Form.Label>
+
               <Form.Control
                 type="text"
                 placeholder="Enter username or email"
@@ -77,8 +85,9 @@ const SignIn = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group>
               <Form.Label>Password</Form.Label>
+
               <Form.Control
                 type="password"
                 placeholder="Password"
@@ -87,6 +96,12 @@ const SignIn = () => {
                 onChange={handleInputChange}
                 required
               />
+              <div className="eye-open">
+                <FaEye />
+              </div>
+              <div className="eye-close" onClick={handleTogglePassword}>
+                <FaEyeSlash />
+              </div>
             </Form.Group>
 
             <Form.Group className="mb-3">
