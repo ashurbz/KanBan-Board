@@ -1,18 +1,8 @@
 import { useDispatch } from "react-redux";
-import { useDrag } from "react-dnd";
 import { moveTask, deleteTask } from "../redux/TaskSlice";
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, stage }) => {
   const dispatch = useDispatch();
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: "task",
-    item: { id: task.id, stage: task.stage },
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
-    }),
-  }));
-
-  const opacity = isDragging ? 0.5 : 1;
 
   const handleMove = (direction) => {
     dispatch(moveTask({ taskId: task.id, direction }));
@@ -25,7 +15,7 @@ const TaskItem = ({ task }) => {
   };
 
   return (
-    <div className="card mb-2" ref={drag} style={{ opacity }}>
+    <div className="card mb-2">
       <div className="card-body">
         <h5 className="card-title">{task.name}</h5>
         <p className="card-text">Priority: {task.priority}</p>
@@ -33,14 +23,14 @@ const TaskItem = ({ task }) => {
         <button
           className="btn btn-warning"
           onClick={() => handleMove("backward")}
-          disabled={task.stage === 0}
+          disabled={stage === 0}
         >
           Back
         </button>
         <button
           className="btn btn-primary"
           onClick={() => handleMove("forward")}
-          disabled={task.stage === 3}
+          disabled={stage === 3}
         >
           Forward
         </button>

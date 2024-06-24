@@ -3,7 +3,6 @@ import TaskList from "./TaskList";
 
 const TaskBoard = () => {
   const tasks = useSelector((state) => state.tasks);
-
   const stages = ["Backlog", "To Do", "Ongoing", "Done"];
 
   return (
