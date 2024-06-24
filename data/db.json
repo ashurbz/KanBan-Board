@@ -78,6 +78,14 @@
       "email": "fdfgdrt@gmail.com",
       "password": "123456",
       "confirmPassword": "123456"
+    },
+    {
+      "id": "86fb",
+      "fullName": "Shiva",
+      "userName": "shiva1",
+      "email": "sogh@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456"
     }
   ]
 }
