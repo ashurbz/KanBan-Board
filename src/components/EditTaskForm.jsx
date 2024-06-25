@@ -1,36 +1,27 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTask } from "../redux/TaskSlice";
 
-const TaskForm = () => {
-  const [task, setTask] = useState({ name: "", priority: "low", deadline: "" });
-  const dispatch = useDispatch();
+const EditTaskForm = ({ task, onSave, onCancel }) => {
+  const [editedTask, setEditedTask] = useState(task);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setTask({ ...task, [name]: value });
+    setEditedTask({ ...editedTask, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!task.name || !task.deadline) {
-      window.alert("Please fill in all fields");
-      return;
-    }
-    dispatch(addTask({ ...task, id: Date.now(), stage: 0 }));
-    setTask({ name: "", priority: "low", deadline: "" });
+    onSave(editedTask);
   };
-  const today = new Date().toISOString().split("T")[0];
 
   return (
-    <form onSubmit={handleSubmit} className="mb-4">
+    <form onSubmit={handleSubmit}>
       <div className="form-group">
         <input
           type="text"
           className="form-control"
           name="name"
           placeholder="Task Name"
-          value={task.name}
+          value={editedTask.name}
           onChange={handleChange}
         />
       </div>
@@ -38,7 +29,7 @@ const TaskForm = () => {
         <select
           className="form-control"
           name="priority"
-          value={task.priority}
+          value={editedTask.priority}
           onChange={handleChange}
         >
           <option value="high">High</option>
@@ -51,16 +42,19 @@ const TaskForm = () => {
           type="date"
           className="form-control"
           name="deadline"
-          value={task.deadline}
+          value={editedTask.deadline}
           onChange={handleChange}
-          min={today}
+          min={new Date().toISOString().split("T")[0]}
         />
       </div>
       <button type="submit" className="btn btn-success">
-        Create Task
+        Save
+      </button>
+      <button type="button" className="btn btn-secondary" onClick={onCancel}>
+        Cancel
       </button>
     </form>
   );
 };
 
-export default TaskForm;
+export default EditTaskForm;

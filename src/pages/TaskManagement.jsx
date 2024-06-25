@@ -5,6 +5,7 @@ import TaskForm from "../components/TaskForm";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { editTask } from "../redux/TaskSlice";
+import Trash from "../components/Trash";
 
 const TaskManagement = () => {
   const tasks = useSelector((state) => state.tasks);
@@ -13,7 +14,6 @@ const TaskManagement = () => {
   const onDragEnd = (result) => {
     console.log(result);
     const { source, destination } = result;
-    console.log(result);
     if (!destination) {
       return;
     }
@@ -34,13 +34,25 @@ const TaskManagement = () => {
       })
     );
   };
+
   return (
-    <div>
+    <div style={{ position: "relative", minHeight: "100vh" }}>
       <NavBar />
       <TaskForm />
       <DragDropContext onDragEnd={onDragEnd}>
         <TaskBoard />
       </DragDropContext>
+      <div
+        style={{
+          position: "fixed",
+          bottom: "100px",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Trash />
+      </div>
     </div>
   );
 };
