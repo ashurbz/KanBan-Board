@@ -14,6 +14,7 @@ const taskSlice = createSlice({
     },
     moveTask: (state, action) => {
       const { taskId, direction } = action.payload;
+      console.log(action.payload);
       return state.map((task) => {
         if (task.id === taskId) {
           let newStage = task.stage;
