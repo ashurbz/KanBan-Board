@@ -1,12 +1,14 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { isAuth, userDetails } from "../redux/authSlice";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import "./signIn.css";
 import NavBar from "../components/NavBar";
+import { auth, googleProvider } from "../utilities/fireBaseConfig";
+import { signInWithPopup } from "firebase/auth";
+import "./signIn.css";
+import axios from "axios";
 
 const SignIn = () => {
   const [loginData, setLoginData] = useState({
@@ -69,6 +71,21 @@ const SignIn = () => {
     setCaptchaNumber("");
   };
 
+  const handleSocialSignIn = (provider) => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        dispatch(userDetails(user.displayName));
+        dispatch(isAuth(true));
+        navigate("/dashboard");
+        window.alert("Login successful");
+      })
+      .catch((error) => {
+        console.error("Error signing in with social account", error);
+        window.alert("Failed to login with social account");
+      });
+  };
+
   return (
     <>
       <NavBar />
@@ -79,12 +96,11 @@ const SignIn = () => {
             <Form onSubmit={handleSubmit}>
               <Form.Group>
                 <Form.Label>Username or Email address</Form.Label>
-
                 <Form.Control
                   type="text"
                   placeholder="Enter username or email"
                   name="userNameOrEmail"
-                  value={loginData.username}
+                  value={loginData.userNameOrEmail}
                   onChange={handleInputChange}
                   required
                 />
@@ -139,6 +155,15 @@ const SignIn = () => {
               <Button variant="primary" type="submit">
                 Login
               </Button>
+
+              <div className="social-signin" style={{ marginTop: "10px" }}>
+                <Button
+                  variant="danger"
+                  onClick={() => handleSocialSignIn(googleProvider)}
+                >
+                  Sign in with Google
+                </Button>
+              </div>
             </Form>
           </Col>
         </Row>

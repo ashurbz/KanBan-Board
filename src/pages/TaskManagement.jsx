@@ -41,17 +41,18 @@ const TaskManagement = () => {
       <TaskForm />
       <DragDropContext onDragEnd={onDragEnd}>
         <TaskBoard />
+
+        <div
+          style={{
+            bottom: "100px",
+            width: "90%",
+            display: "flex",
+            justifyContent: "end",
+          }}
+        >
+          <Trash />
+        </div>
       </DragDropContext>
-      <div
-        style={{
-          bottom: "100px",
-          width: "90%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <Trash />
-      </div>
     </div>
   );
 };
