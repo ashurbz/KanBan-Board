@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../redux/TaskSlice";
+import "./taskForm.css";
 
 const TaskForm = () => {
   const [task, setTask] = useState({ name: "", priority: "low", deadline: "" });
@@ -49,7 +50,7 @@ const TaskForm = () => {
       <div className="form-group">
         <input
           type="date"
-          className="form-control"
+          className="form-control click"
           name="deadline"
           value={task.deadline}
           onChange={handleChange}

@@ -44,9 +44,8 @@ const TaskManagement = () => {
       </DragDropContext>
       <div
         style={{
-          position: "fixed",
           bottom: "100px",
-          width: "100%",
+          width: "90%",
           display: "flex",
           justifyContent: "center",
         }}

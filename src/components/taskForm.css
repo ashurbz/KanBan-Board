@@ -1,0 +1,25 @@
+.click {
+  appearance: none; /* Remove default styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 10px; /* Add padding for a larger clickable area */
+  cursor: pointer; /* Ensure cursor changes to pointer */
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.click::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  color: transparent;
+  background: transparent;
+}
