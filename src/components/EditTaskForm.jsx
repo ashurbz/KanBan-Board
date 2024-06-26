@@ -10,6 +10,10 @@ const EditTaskForm = ({ task, onSave, onCancel }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!editedTask.name || !editedTask.deadline) {
+      window.alert("Please fill in all fields in edit form");
+      return;
+    }
     onSave(editedTask);
   };
 
