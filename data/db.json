@@ -102,6 +102,14 @@
       "email": "gvdsgv@hbsjh.com",
       "password": "123456",
       "confirmPassword": "123456"
+    },
+    {
+      "id": "e88d",
+      "fullName": "ashu",
+      "userName": "rbzashh",
+      "email": "123@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456"
     }
   ]
 }

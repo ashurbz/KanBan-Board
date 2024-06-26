@@ -81,7 +81,7 @@ const SignUp = () => {
 
     axios
       .post(`http://localhost:9000/users`, formData)
-      .then((result) => window.alert("Registration Successful, Please Login"))
+      .then(() => window.alert("Registration Successful, Please Login"))
       .catch((error) => console.log(error));
     navigate("/signin");
 
@@ -112,7 +112,7 @@ const SignUp = () => {
             name="fullName"
             value={formData.fullName}
             onChange={handleInputChange}
-            isInvalid={!!errors.fullName}
+            isInvalid={errors.fullName ? true : false}
           />
           <Form.Control.Feedback type="invalid">
             {errors.fullName}
@@ -126,7 +126,7 @@ const SignUp = () => {
             name="userName"
             value={formData.userName}
             onChange={handleInputChange}
-            isInvalid={!!errors.userName}
+            isInvalid={errors.userName ? true : false}
           />
           <Form.Control.Feedback type="invalid">
             {errors.userName}
@@ -140,7 +140,7 @@ const SignUp = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            isInvalid={!!errors.email}
+            isInvalid={errors.email ? true : false}
           />
           <Form.Control.Feedback type="invalid">
             {errors.email}
@@ -157,7 +157,7 @@ const SignUp = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                isInvalid={!!errors.password}
+                isInvalid={errors.password ? true : false}
                 required
               />
               <Form.Control.Feedback type="invalid">
@@ -175,7 +175,7 @@ const SignUp = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                isInvalid={!!errors.password}
+                isInvalid={errors.password ? true : false}
                 required
               />
               <Form.Control.Feedback type="invalid">
@@ -195,7 +195,7 @@ const SignUp = () => {
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleInputChange}
-            isInvalid={!!errors.confirmPassword}
+            isInvalid={errors.confirmPassword ? true : false}
           />
           <Form.Control.Feedback type="invalid">
             {errors.confirmPassword}
