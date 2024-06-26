@@ -39,36 +39,42 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     axios.get(`http://localhost:9000/users`).then((result) => {
+      let userFound = false;
+      let loginSuccessful = false;
+
       result.data.map((user) => {
-        console.log(user);
         if (
-          user.email == loginData.userNameOrEmail ||
-          user.userName == loginData.userNameOrEmail
+          user.email === loginData.userNameOrEmail ||
+          user.userName === loginData.userNameOrEmail
         ) {
-          if (user.password == loginData.password) {
+          userFound = true;
+          if (user.password === loginData.password) {
             if (loginData.captcha !== captchNumber) {
-              window.alert("Captch is not verified");
+              window.alert("Captcha is not verified");
               return;
             }
             dispatch(userDetails(user.fullName));
             dispatch(isAuth(true));
             navigate("/dashboard");
-
             window.alert("Login successful");
-          } else {
-            window.alert("password or email incorrect");
+            loginSuccessful = true;
           }
         }
       });
-    });
 
-    setLoginData({
-      userNameOrEmail: "",
-      password: "",
-      captcha: "",
+      if (!userFound || !loginSuccessful) {
+        window.alert("Password or email incorrect");
+      }
+
+      setLoginData({
+        userNameOrEmail: "",
+        password: "",
+        captcha: "",
+      });
+      setCaptchaNumber("");
     });
-    setCaptchaNumber("");
   };
 
   const handleSocialSignIn = (provider) => {
