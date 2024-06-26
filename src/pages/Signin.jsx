@@ -29,11 +29,10 @@ const SignIn = () => {
   const handleTogglePassword = () => {
     setTogglePassword(!togglePassword);
   };
-
+  function generateRandomNumber() {
+    return (Math.floor(Math.random() * 9000) + 1000).toString();
+  }
   useEffect(() => {
-    function generateRandomNumber() {
-      return (Math.floor(Math.random() * 9000) + 1000).toString();
-    }
     setCaptchaNumber(generateRandomNumber());
   }, []);
 
@@ -73,7 +72,7 @@ const SignIn = () => {
         password: "",
         captcha: "",
       });
-      setCaptchaNumber("");
+      setCaptchaNumber(generateRandomNumber());
     });
   };
 
