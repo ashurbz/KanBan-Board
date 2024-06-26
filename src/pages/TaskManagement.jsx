@@ -10,6 +10,7 @@ import { useState } from "react";
 
 const TaskManagement = () => {
   const [isDragging, setIsDragging] = useState(false);
+
   const tasks = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
 
@@ -21,8 +22,7 @@ const TaskManagement = () => {
   };
   const onDragEnd = (result) => {
     console.log(isDragging + "in drag start before false");
-
-    setIsDragging(false);
+    // setIsDragging(false);
     console.log(isDragging + "in drag start after false");
 
     console.log(result);
@@ -65,13 +65,15 @@ const TaskManagement = () => {
       <TaskForm />
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <TaskBoard />
-
         <div
           style={{
+            position: "fixed",
+            maxHeight: "100px",
             bottom: "100px",
             width: "90%",
-            display: "flex",
-            justifyContent: "end",
+            display: isDragging ? "block" : "none",
+
+            marginLeft: "90%",
           }}
         >
           <Trash />
