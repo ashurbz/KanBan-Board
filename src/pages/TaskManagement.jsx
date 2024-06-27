@@ -6,13 +6,25 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteTask, editTask } from "../redux/TaskSlice";
 import Trash from "../components/Trash";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const TaskManagement = () => {
   const [isDragging, setIsDragging] = useState(false);
+  const [taskIdToBeDeleted, setTaskIdToBeDeleted] = useState(null);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!taskIdToBeDeleted) {
+      return;
+    }
+
+    dispatch(deleteTask(taskIdToBeDeleted));
+
+    setIsDragging(false);
+  }, [taskIdToBeDeleted, dispatch]);
 
   const tasks = useSelector((state) => state.tasks);
-  const dispatch = useDispatch();
 
   const onDragStart = () => {
     console.log(isDragging + "in drag start before true");
@@ -22,7 +34,7 @@ const TaskManagement = () => {
   };
   const onDragEnd = (result) => {
     console.log(isDragging + "in drag start before false");
-    // setIsDragging(false);
+    setIsDragging(false);
     console.log(isDragging + "in drag start after false");
 
     console.log(result);
@@ -45,7 +57,7 @@ const TaskManagement = () => {
         `Are you sure you want to delete the task "${data[0].name}"?`
       );
       if (confirmDelete) {
-        dispatch(deleteTask(data[0].id));
+        setTaskIdToBeDeleted(data[0].id);
       }
       return;
     }
@@ -71,7 +83,7 @@ const TaskManagement = () => {
             maxHeight: "100px",
             bottom: "100px",
             width: "90%",
-            display: isDragging ? "block" : "none",
+            opacity: isDragging ? "1" : "0",
 
             marginLeft: "90%",
           }}

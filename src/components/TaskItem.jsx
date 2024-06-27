@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { moveTask, deleteTask, editTask } from "../redux/TaskSlice";
 import EditTaskForm from "./EditTaskForm.jsx";
+import { Card, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const TaskItem = ({ task, stage }) => {
   const dispatch = useDispatch();
@@ -31,8 +33,8 @@ const TaskItem = ({ task, stage }) => {
   };
 
   return (
-    <div className="card mb-2">
-      <div className="card-body">
+    <Card className="mb-3">
+      <Card.Body>
         {isEditing ? (
           <EditTaskForm
             task={task}
@@ -41,33 +43,41 @@ const TaskItem = ({ task, stage }) => {
           />
         ) : (
           <>
-            <h5 className="card-title">{task.name}</h5>
-            <p className="card-text">Priority: {task.priority}</p>
-            <p className="card-text">Deadline: {task.deadline}</p>
-            <button
-              className="btn btn-warning"
-              onClick={() => handleMove("backward")}
-              disabled={stage === 0}
-            >
-              Back
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => handleMove("forward")}
-              disabled={stage === 3}
-            >
-              Forward
-            </button>
-            <button className="btn btn-danger" onClick={handleDelete}>
-              Delete
-            </button>
-            <button className="btn btn-secondary" onClick={handleEdit}>
-              Edit
-            </button>
+            <Card.Title>{task.name}</Card.Title>
+            <Card.Text>Priority: {task.priority}</Card.Text>
+            <Card.Text>Deadline: {task.deadline}</Card.Text>
+            <div className="d-flex flex-wrap justify-content-between">
+              <Button
+                variant="primary"
+                onClick={() => handleMove("backward")}
+                disabled={stage === 0}
+                className="mb-2 me-2"
+              >
+                Back
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => handleMove("forward")}
+                disabled={stage === 3}
+                className="mb-2 me-2"
+              >
+                Forward
+              </Button>
+              <Button
+                variant="danger"
+                onClick={handleDelete}
+                className="mb-2 me-2"
+              >
+                Delete
+              </Button>
+              <Button variant="secondary" onClick={handleEdit} className="mb-2">
+                Edit
+              </Button>
+            </div>
           </>
         )}
-      </div>
-    </div>
+      </Card.Body>
+    </Card>
   );
 };
 

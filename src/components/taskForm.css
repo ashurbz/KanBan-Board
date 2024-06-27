@@ -1,12 +1,12 @@
 .click {
-  appearance: none; /* Remove default styling */
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   position: relative;
   display: inline-block;
   width: 100%;
-  padding: 10px; /* Add padding for a larger clickable area */
-  cursor: pointer; /* Ensure cursor changes to pointer */
+  padding: 10px;
+  cursor: pointer;
   border: 1px solid #ced4da;
   border-radius: 4px;
 }

@@ -3,6 +3,7 @@ import "./navBar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuth, userDetails } from "../redux/authSlice";
 import { useState } from "react";
+import { clearTasks } from "../redux/TaskSlice";
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
@@ -12,6 +13,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
+    dispatch(clearTasks());
     dispatch(userDetails(null));
     dispatch(isAuth(false));
   };
