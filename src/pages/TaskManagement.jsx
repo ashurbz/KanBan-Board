@@ -6,23 +6,22 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteTask, editTask } from "../redux/TaskSlice";
 import Trash from "../components/Trash";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const TaskManagement = () => {
   const [isDragging, setIsDragging] = useState(false);
-  const [taskIdToBeDeleted, setTaskIdToBeDeleted] = useState(null);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!taskIdToBeDeleted) {
-      return;
-    }
+  // useEffect(() => {
+  //   if (!taskIdToBeDeleted) {
+  //     return;
+  //   }
 
-    dispatch(deleteTask(taskIdToBeDeleted));
+  //   dispatch(deleteTask(taskIdToBeDeleted));
 
-    setIsDragging(false);
-  }, [taskIdToBeDeleted, dispatch]);
+  //   setIsDragging(false);
+  // }, [taskIdToBeDeleted, dispatch]);
 
   const tasks = useSelector((state) => state.tasks);
 
@@ -57,7 +56,8 @@ const TaskManagement = () => {
         `Are you sure you want to delete the task "${data[0].name}"?`
       );
       if (confirmDelete) {
-        setTaskIdToBeDeleted(data[0].id);
+        // setTaskIdToBeDeleted(data[0].id);
+        dispatch(deleteTask(data[0].id));
       }
       return;
     }
