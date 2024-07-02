@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navBar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuth, userDetails } from "../redux/authSlice";
@@ -11,11 +11,12 @@ const NavBar = () => {
   const auth = useSelector((store) => store.auth.isAuthenticated);
   console.log(auth);
   const dispatch = useDispatch();
-
-  const handleLogOut = () => {
-    dispatch(clearTasks());
-    dispatch(userDetails(null));
+  const navigate = useNavigate();
+  const handleLogout = () => {
     dispatch(isAuth(false));
+    dispatch(userDetails(null));
+    localStorage.removeItem("user");
+    navigate("/signin");
   };
   const handleToggle = () => {
     setToggle(!toggle);
@@ -66,7 +67,7 @@ const NavBar = () => {
                 </>
               ) : (
                 <li className="nav-item">
-                  <Link to="/" className="nav-link" onClick={handleLogOut}>
+                  <Link to="/" className="nav-link" onClick={handleLogout}>
                     Log Out
                   </Link>
                 </li>

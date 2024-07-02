@@ -57,6 +57,7 @@ const SignIn = () => {
             }
             dispatch(userDetails(user));
             dispatch(isAuth(true));
+            localStorage.setItem("user", JSON.stringify(user));
             navigate("/dashboard");
             window.alert("Login successful");
             loginSuccessful = true;
@@ -83,6 +84,7 @@ const SignIn = () => {
         const user = result.user;
         dispatch(userDetails(user.displayName));
         dispatch(isAuth(true));
+        localStorage.setItem("user", JSON.stringify(user));
         navigate("/dashboard");
         window.alert("Login successful");
       })
