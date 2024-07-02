@@ -46,7 +46,7 @@ const NavBar = () => {
           >
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               {user ? (
-                <li className="nav-item nav-link">Welcome {user}</li>
+                <li className="nav-item nav-link">Welcome {user.fullName}</li>
               ) : (
                 ""
               )}

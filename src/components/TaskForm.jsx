@@ -2,9 +2,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../redux/TaskSlice";
 import "./taskForm.css";
+import { useSelector } from "react-redux";
 
 const TaskForm = () => {
   const [task, setTask] = useState({ name: "", priority: "low", deadline: "" });
+  const user = useSelector((store) => store.auth.user);
+
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -18,7 +21,9 @@ const TaskForm = () => {
       window.alert("Please fill in all fields");
       return;
     }
-    dispatch(addTask({ ...task, id: Date.now(), stage: 0 }));
+    dispatch(
+      addTask({ ...task, id: Date.now(), stage: 0, createdBy: user.id })
+    );
     setTask({ name: "", priority: "low", deadline: "" });
   };
   const today = new Date().toISOString().split("T")[0];

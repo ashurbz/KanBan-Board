@@ -4,13 +4,49 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import DashBoardCard from "../components/DashBoardCard";
 import NavBar from "../components/NavBar";
 import "./dashboard.css";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getTasks, setTasks } from "../redux/TaskSlice";
+import axios from "axios";
 
 const DashBoard = () => {
-  const tasks = useSelector((state) => state.tasks);
+  const [data, setData] = useState([]);
+  const user = useSelector((store) => store.auth.user);
+  const tasks = useSelector((store) => {
+    console.log(store.tasks, "aaaaaaaaaaaa");
+    return store.tasks.tasks;
+  });
+  console.log(tasks, "sjkbkskdkskdksbkcfksb");
   const isAuth = useSelector((store) => store.auth.isAuthenticated);
-
+  const dispatch = useDispatch();
   const countTasks = (stage) =>
-    tasks.filter((task) => task.stage === stage).length;
+    tasks.filter((task) => task.stage === stage).length || 0;
+
+  const fetchTasks = async () => {
+    try {
+      const res = await axios.get(`http://localhost:9000/tasks`);
+      const userTasks = res.data.filter((task) => task.createdBy === user.id);
+      console.log(userTasks, "------------");
+      dispatch(setTasks(userTasks));
+      console.log(res.data, "after dispatch");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  useEffect(() => {
+    const temp = [
+      { heading: "Total Task", count: tasks.length },
+      { heading: "Total Completed", count: countTasks(TASK_STAGES.DONE) },
+      { heading: "Total Pending", count: countTasks(TASK_STAGES.BACKLOG) },
+    ];
+    console.log(temp, "**************");
+    setData(temp);
+  }, [tasks, tasks.length]);
 
   const TASK_STAGES = {
     TO_DO: 1,
@@ -18,12 +54,6 @@ const DashBoard = () => {
     DONE: 3,
     BACKLOG: 0,
   };
-
-  const data = [
-    { heading: "Total Task", count: tasks.length },
-    { heading: "Total Completed", count: countTasks(TASK_STAGES.DONE) },
-    { heading: "Total Pending", count: countTasks(TASK_STAGES.BACKLOG) },
-  ];
 
   console.log(isAuth);
   return (

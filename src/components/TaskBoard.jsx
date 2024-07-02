@@ -5,12 +5,10 @@ import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const TaskBoard = () => {
-  const tasks = useSelector((state) => state.tasks);
+  const tasks = useSelector((state) => state.tasks.tasks);
   const stages = ["Backlog", "To Do", "Ongoing", "Done"];
 
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks]);
+  console.log(tasks, "+++++++++++");
 
   return (
     <div className="container-fluid">

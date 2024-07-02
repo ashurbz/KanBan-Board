@@ -55,7 +55,7 @@ const SignIn = () => {
               window.alert("Captcha is not verified");
               return;
             }
-            dispatch(userDetails(user.fullName));
+            dispatch(userDetails(user));
             dispatch(isAuth(true));
             navigate("/dashboard");
             window.alert("Login successful");

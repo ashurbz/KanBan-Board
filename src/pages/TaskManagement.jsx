@@ -23,7 +23,7 @@ const TaskManagement = () => {
   //   setIsDragging(false);
   // }, [taskIdToBeDeleted, dispatch]);
 
-  const tasks = useSelector((state) => state.tasks);
+  const tasks = useSelector((state) => state.tasks.tasks);
 
   const onDragStart = () => {
     console.log(isDragging + "in drag start before true");
