@@ -2,45 +2,26 @@ import { DragDropContext } from "react-beautiful-dnd";
 import NavBar from "../components/NavBar";
 import TaskBoard from "../components/TaskBoard";
 import TaskForm from "../components/TaskForm";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { deleteTask, editTask } from "../redux/TaskSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteTaskAsync, editTaskAsync } from "../redux/TaskSlice";
 import Trash from "../components/Trash";
 import { useState } from "react";
 
 const TaskManagement = () => {
   const [isDragging, setIsDragging] = useState(false);
-
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   if (!taskIdToBeDeleted) {
-  //     return;
-  //   }
-
-  //   dispatch(deleteTask(taskIdToBeDeleted));
-
-  //   setIsDragging(false);
-  // }, [taskIdToBeDeleted, dispatch]);
-
   const tasks = useSelector((state) => state.tasks.tasks);
 
   const onDragStart = () => {
-    console.log(isDragging + "in drag start before true");
-
     setIsDragging(true);
-    console.log(isDragging + "in drag start after true");
   };
-  const onDragEnd = (result) => {
-    console.log(isDragging + "in drag start before false");
-    setIsDragging(false);
-    console.log(isDragging + "in drag start after false");
 
-    console.log(result);
+  const onDragEnd = (result) => {
+    setIsDragging(false);
     const { source, destination } = result;
-    if (!destination) {
-      return;
-    }
+
+    if (!destination) return;
+
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
@@ -49,24 +30,22 @@ const TaskManagement = () => {
     }
 
     const stages = ["Backlog", "To Do", "Ongoing", "Done"];
+    const task = tasks.find((task) => task.name === result.draggableId);
 
-    const data = tasks.filter((task) => task.name === result.draggableId);
     if (destination.droppableId === "trash") {
       const confirmDelete = window.confirm(
-        `Are you sure you want to delete the task "${data[0].name}"?`
+        `Are you sure you want to delete the task "${task.name}"?`
       );
       if (confirmDelete) {
-        // setTaskIdToBeDeleted(data[0].id);
-        dispatch(deleteTask(data[0].id));
+        dispatch(deleteTaskAsync(task.id));
       }
       return;
     }
-    console.log(data);
 
     dispatch(
-      editTask({
-        ...data[0],
-        stage: stages.indexOf(result.destination.droppableId),
+      editTaskAsync({
+        ...task,
+        stage: stages.indexOf(destination.droppableId),
       })
     );
   };
@@ -84,7 +63,6 @@ const TaskManagement = () => {
             bottom: "100px",
             width: "90%",
             opacity: isDragging ? "1" : "0",
-
             marginLeft: "90%",
           }}
         >

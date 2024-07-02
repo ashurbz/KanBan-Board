@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import { addTask } from "../redux/TaskSlice";
+import { addTaskAsync } from "../redux/TaskSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./taskForm.css";
 
@@ -22,7 +22,12 @@ const TaskForm = () => {
       return;
     }
     dispatch(
-      addTask({ ...task, id: Date.now(), stage: 0, createdBy: user.id })
+      addTaskAsync({
+        ...task,
+        id: "" + Date.now(),
+        stage: 0,
+        createdBy: user.id,
+      })
     );
     setTask({ name: "", priority: "low", deadline: "" });
   };

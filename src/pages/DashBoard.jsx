@@ -4,9 +4,9 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import DashBoardCard from "../components/DashBoardCard";
 import NavBar from "../components/NavBar";
 import "./dashboard.css";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getTasks, setTasks } from "../redux/TaskSlice";
+import { setTasks } from "../redux/TaskSlice";
 import axios from "axios";
 
 const DashBoard = () => {

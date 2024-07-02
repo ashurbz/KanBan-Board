@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { moveTask, deleteTask, editTask } from "../redux/TaskSlice";
+import {
+  moveTaskAsync,
+  deleteTaskAsync,
+  editTaskAsync,
+} from "../redux/TaskSlice";
 import EditTaskForm from "./EditTaskForm.jsx";
 import { Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,12 +14,12 @@ const TaskItem = ({ task, stage }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleMove = (direction) => {
-    dispatch(moveTask({ taskId: task.id, direction }));
+    dispatch(moveTaskAsync({ taskId: task.id, direction }));
   };
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this task?")) {
-      dispatch(deleteTask(task.id));
+      dispatch(deleteTaskAsync(task.id));
     }
   };
 
@@ -24,7 +28,7 @@ const TaskItem = ({ task, stage }) => {
   };
 
   const handleSave = (updatedTask) => {
-    dispatch(editTask(updatedTask));
+    dispatch(editTaskAsync(updatedTask));
     setIsEditing(false);
   };
 
@@ -32,8 +36,15 @@ const TaskItem = ({ task, stage }) => {
     setIsEditing(false);
   };
 
+  const stageColors = {
+    0: "#f8d7da", // Red for Backlog
+    1: "#d4edda", // Green for To Do
+    2: "#fff3cd", // Yellow for Ongoing
+    3: "#cce5ff", // Blue for Done
+  };
+
   return (
-    <Card className="mb-3">
+    <Card className="mb-3" style={{ backgroundColor: `${stageColors[stage]}` }}>
       <Card.Body>
         {isEditing ? (
           <EditTaskForm
