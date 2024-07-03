@@ -108,7 +108,7 @@ const SignUp = () => {
   return (
     <>
       <NavBar />
-      <Container className="mt-5">
+      <Container className="mt-5" style={{ minHeight: "100vh" }}>
         <Row className="justify-content-md-center">
           <Col xs={12} md={6}>
             <h2>Sign Up</h2>

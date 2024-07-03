@@ -4,19 +4,18 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import DashBoardCard from "../components/DashBoardCard";
 import NavBar from "../components/NavBar";
 import "./dashboard.css";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getTasks, setTasks } from "../redux/TaskSlice";
+import { setTasks } from "../redux/TaskSlice";
 import axios from "axios";
 
 const DashBoard = () => {
   const [data, setData] = useState([]);
   const user = useSelector((store) => store.auth.user);
   const tasks = useSelector((store) => {
-    console.log(store.tasks, "aaaaaaaaaaaa");
     return store.tasks.tasks;
   });
-  console.log(tasks, "sjkbkskdkskdksbkcfksb");
+
   const isAuth = useSelector((store) => store.auth.isAuthenticated);
   const dispatch = useDispatch();
   const countTasks = (stage) =>
@@ -26,7 +25,7 @@ const DashBoard = () => {
     try {
       const res = await axios.get(`http://localhost:9000/tasks`);
       const userTasks = res.data.filter((task) => task.createdBy === user.id);
-      console.log(userTasks, "------------");
+
       dispatch(setTasks(userTasks));
       console.log(res.data, "after dispatch");
     } catch (error) {
