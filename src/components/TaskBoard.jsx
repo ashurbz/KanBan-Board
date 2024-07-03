@@ -1,14 +1,12 @@
 import { useSelector } from "react-redux";
 import TaskList from "./TaskList";
 import { Droppable } from "react-beautiful-dnd";
-import { useEffect } from "react";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const TaskBoard = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
   const stages = ["Backlog", "To Do", "Ongoing", "Done"];
-
-  console.log(tasks, "+++++++++++");
 
   return (
     <div className="container-fluid">

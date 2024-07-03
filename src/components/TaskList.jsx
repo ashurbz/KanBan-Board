@@ -5,7 +5,7 @@ const TaskList = ({ tasks, stage }) => {
   if (!tasks) {
     return;
   }
-  console.log(tasks);
+
   return (
     <div>
       {tasks.map((task, index) => (

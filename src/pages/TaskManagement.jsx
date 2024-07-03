@@ -13,30 +13,14 @@ const TaskManagement = () => {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (!taskIdToBeDeleted) {
-  //     return;
-  //   }
-
-  //   dispatch(deleteTask(taskIdToBeDeleted));
-
-  //   setIsDragging(false);
-  // }, [taskIdToBeDeleted, dispatch]);
-
   const tasks = useSelector((state) => state.tasks.tasks);
 
   const onDragStart = () => {
-    console.log(isDragging + "in drag start before true");
-
     setIsDragging(true);
-    console.log(isDragging + "in drag start after true");
   };
   const onDragEnd = (result) => {
-    console.log(isDragging + "in drag start before false");
     setIsDragging(false);
-    console.log(isDragging + "in drag start after false");
 
-    console.log(result);
     const { source, destination } = result;
     if (!destination) {
       return;
@@ -56,12 +40,10 @@ const TaskManagement = () => {
         `Are you sure you want to delete the task "${data[0].name}"?`
       );
       if (confirmDelete) {
-        // setTaskIdToBeDeleted(data[0].id);
         dispatch(deleteTask(data[0].id));
       }
       return;
     }
-    console.log(data);
 
     dispatch(
       editTask({

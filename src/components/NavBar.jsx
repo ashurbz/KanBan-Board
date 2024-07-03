@@ -3,13 +3,12 @@ import "./navBar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuth, userDetails } from "../redux/authSlice";
 import { useState } from "react";
-import { clearTasks } from "../redux/TaskSlice";
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
   const user = useSelector((store) => store.auth.user);
   const auth = useSelector((store) => store.auth.isAuthenticated);
-  console.log(auth);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {

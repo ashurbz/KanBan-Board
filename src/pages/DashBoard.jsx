@@ -16,7 +16,6 @@ const DashBoard = () => {
     return store.tasks.tasks;
   });
 
-  const isAuth = useSelector((store) => store.auth.isAuthenticated);
   const dispatch = useDispatch();
   const countTasks = (stage) =>
     tasks.filter((task) => task.stage === stage).length || 0;
@@ -27,7 +26,6 @@ const DashBoard = () => {
       const userTasks = res.data.filter((task) => task.createdBy === user.id);
 
       dispatch(setTasks(userTasks));
-      console.log(res.data, "after dispatch");
     } catch (error) {
       console.error(error);
     }
@@ -43,7 +41,7 @@ const DashBoard = () => {
       { heading: "Total Completed", count: countTasks(TASK_STAGES.DONE) },
       { heading: "Total Pending", count: countTasks(TASK_STAGES.BACKLOG) },
     ];
-    console.log(temp, "**************");
+
     setData(temp);
   }, [tasks, tasks.length]);
 
@@ -54,7 +52,6 @@ const DashBoard = () => {
     BACKLOG: 0,
   };
 
-  console.log(isAuth);
   return (
     <>
       <NavBar />
