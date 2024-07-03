@@ -31,9 +31,14 @@ const TaskItem = ({ task, stage }) => {
   const handleCancel = () => {
     setIsEditing(false);
   };
-
+  const stageColors = {
+    0: "#f8d7da",
+    1: "#d4edda",
+    2: "#fff3cd",
+    3: "#cce5ff",
+  };
   return (
-    <Card className="mb-3">
+    <Card className="mb-3" style={{ backgroundColor: `${stageColors[stage]}` }}>
       <Card.Body>
         {isEditing ? (
           <EditTaskForm

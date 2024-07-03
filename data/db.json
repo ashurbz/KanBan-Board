@@ -1,17 +1,17 @@
 {
   "users": [
     {
-      "id": "4f09",
+      "id": "1436",
       "fullName": "Ashish",
-      "userName": "rbzashu",
-      "email": "rbzashu@gmail.com",
+      "userName": "rbzashu1",
+      "email": "rbzashu1@gmail.com",
       "password": "123456",
       "confirmPassword": "123456"
     },
     {
-      "id": "f979",
+      "id": "8170",
       "fullName": "Ashu",
-      "userName": "rbzashu1",
+      "userName": "rbzashu",
       "email": "rbzashu@gmail.com",
       "password": "123456",
       "confirmPassword": "123456"
@@ -19,60 +19,44 @@
   ],
   "tasks": [
     {
-      "id": "1719899144511",
-      "name": "wdhwd",
-      "priority": "low",
-      "deadline": "2024-07-03",
-      "stage": 2,
-      "createdBy": "4f09"
-    },
-    {
-      "id": "1719903486937",
-      "name": "hbdknkas",
-      "priority": "low",
-      "deadline": "2024-07-11",
-      "stage": 0,
-      "createdBy": "4f09"
-    },
-    {
-      "id": "1719903586518",
-      "name": "efefe",
-      "priority": "low",
-      "deadline": "2024-07-11",
-      "stage": 0,
-      "createdBy": "4f09"
-    },
-    {
-      "id": "1719904181771",
-      "name": "dsacdC",
-      "priority": "low",
-      "deadline": "2024-07-12",
-      "stage": 0,
-      "createdBy": "f979"
-    },
-    {
-      "id": "1719905131170",
-      "name": "ashhha",
-      "priority": "medium",
-      "deadline": "2024-07-03",
-      "stage": 0,
-      "createdBy": "f979"
-    },
-    {
-      "id": 1719907549888,
-      "name": "bheb",
+      "id": 1719979679507,
+      "name": "hguh",
       "priority": "low",
       "deadline": "2024-07-04",
       "stage": 0,
-      "createdBy": "4f09"
+      "createdBy": "1436"
     },
     {
-      "id": 1719907556487,
+      "id": 1719979861425,
+      "name": "ashish shishodiawfgduiojkl;'",
+      "priority": "low",
+      "deadline": "2024-07-11",
+      "stage": 0,
+      "createdBy": "1436"
+    },
+    {
+      "id": 1719979870706,
+      "name": "mnmcsc",
+      "priority": "low",
+      "deadline": "2024-07-20",
+      "stage": 0,
+      "createdBy": "1436"
+    },
+    {
+      "id": 1719979922222,
       "name": "ashu",
       "priority": "low",
-      "deadline": "2024-07-03",
+      "deadline": "2024-07-18",
       "stage": 0,
-      "createdBy": "4f09"
+      "createdBy": "8170"
+    },
+    {
+      "id": 1719979926974,
+      "name": "Shiva",
+      "priority": "low",
+      "deadline": "2024-07-05",
+      "stage": 0,
+      "createdBy": "8170"
     }
   ]
 }

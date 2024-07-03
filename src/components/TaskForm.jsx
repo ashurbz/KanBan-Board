@@ -22,7 +22,7 @@ const TaskForm = () => {
       return;
     }
     dispatch(
-      addTask({ ...task, id: Date.now(), stage: 0, createdBy: user.id })
+      addTask({ ...task, id: "" + Date.now(), stage: 0, createdBy: user.id })
     );
     setTask({ name: "", priority: "low", deadline: "" });
   };
