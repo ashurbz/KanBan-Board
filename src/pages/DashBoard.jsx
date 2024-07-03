@@ -59,7 +59,7 @@ const DashBoard = () => {
   return (
     <>
       <NavBar />
-      <Container>
+      <Container style={{ minHeight: "100vh" }}>
         <Row className="my-4">
           {data.map((dataItem) => (
             <Col xs={12} md={6} lg={4} key={dataItem.heading} className="mb-4">

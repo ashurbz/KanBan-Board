@@ -21,6 +21,7 @@ const taskSlice = createSlice({
 
       taskData();
     },
+
     editTask(state, action) {
       const updatedState = state.tasks.map((task) =>
         task.id === action.payload.id ? { ...task, ...action.payload } : task
